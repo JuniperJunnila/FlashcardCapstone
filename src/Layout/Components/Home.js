@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { deleteDeck, listDecks } from "../../utils/api";
 
 const Home = () => {
-  const history = useHistory();
   const [decks, setDecks] = useState([]);
   useEffect(() => {
     async function getDecks() {

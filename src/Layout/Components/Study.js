@@ -13,7 +13,7 @@ const Study = () => {
       if (response) setDeck(response);
     }
     getDeck();
-  }, []);
+  }, [deckId]);
   // return null until the deck variable is populated
   if (!deck.id) return null;
 

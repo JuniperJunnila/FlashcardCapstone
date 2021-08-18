@@ -68,6 +68,7 @@ const CreateDeck = () => {
             </th>
             <th className="col">
               <input
+                required
                 value={formInput.name}
                 type="text"
                 id="deckName"
@@ -82,6 +83,7 @@ const CreateDeck = () => {
             </th>
             <th className="col">
               <textarea
+                required
                 className="form-control"
                 value={formInput.description}
                 id="deckDescription"

@@ -14,7 +14,7 @@ const EditDeck = () => {
       if (response) setDeck(response);
     }
     getDeck();
-  }, []);
+  }, [deckId]);
   // return null until the deck variable is populated
   if (!deck.id) return null;
 
@@ -29,13 +29,13 @@ const EditDeck = () => {
   };
 
   const submitHandler = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const deckUpdate = async () => {
-      const updated = await updateDeck(deck)
-      if(updated) history.push(`/decks/${deck.id}`)
-    }
-    deckUpdate()
-  }
+      const updated = await updateDeck(deck);
+      if (updated) history.push(`/decks/${deck.id}`);
+    };
+    deckUpdate();
+  };
 
   const NavBar = () => {
     return (
@@ -75,6 +75,7 @@ const EditDeck = () => {
               </th>
               <th className="col">
                 <input
+                  required
                   value={deck.name}
                   type="text"
                   id="deckName"
@@ -89,6 +90,7 @@ const EditDeck = () => {
               </th>
               <th className="col">
                 <textarea
+                  required
                   className="form-control"
                   value={deck.description}
                   id="deckDescription"

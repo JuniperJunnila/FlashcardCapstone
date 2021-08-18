@@ -13,6 +13,7 @@ const CardForm = ({submitHandler, formInput, enterText, history, deckId}) => {
               </th>
               <th className="col">
                 <textarea
+                  required
                   value={formInput.front}
                   onChange={enterText}
                   name="card-front"
@@ -28,6 +29,7 @@ const CardForm = ({submitHandler, formInput, enterText, history, deckId}) => {
               </th>
               <th className="col">
                 <textarea
+                  required
                   value={formInput.back}
                   onChange={enterText}
                   name="card-back"

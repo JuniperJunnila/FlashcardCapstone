@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { deleteCard, deleteDeck, readDeck } from "../../utils/api";
 
 //TO DO
@@ -16,7 +16,7 @@ const DeckView = () => {
       if (response) setDeck(response);
     }
     getDeck();
-  }, []);
+  }, [deckId]);
   // return null until the deck variable is populated
   if (!deck.id) return null;
 
@@ -90,26 +90,29 @@ const DeckView = () => {
           </a>
         </div>
         <div className="col mr-3 mb-1">
-          <a onClick={() => deleteDeckHandler(deck.id)}>
-            <button type="button" className="col btn btn-danger" id="delete">
-              Delete
-            </button>
-          </a>
+          <button
+            type="button"
+            className="col btn btn-danger"
+            id="delete"
+            onClick={() => deleteDeckHandler(deck.id)}
+          >
+            Delete
+          </button>
         </div>
       </div>
     );
   };
 
   const CardDisplay = () => {
-    if(cards.length === 0) return null
+    if (cards.length === 0) return null;
     return (
       <div>
         <h3 className="row justify-content-center mt-5">Cards</h3>
         <div className="row mb-5">
-          <div className="col">
+          <ul className="col">
             {cards.map((card) => {
               return (
-                <div className="card m-2">
+                <li key={cards.indexOf(card)} className="card m-2">
                   <div className="card-header">
                     <p className="float-left text-muted">{deck.name}</p>
                     <p className="float-right text-muted">
@@ -130,19 +133,17 @@ const DeckView = () => {
                     <a href={`/decks/${deck.id}/cards/${card.id}/edit`}>
                       <button className="col-1 btn btn-secondary">Edit</button>
                     </a>
-                    <a>
-                      <button
-                        className="col-1 btn btn-danger float-right"
-                        onClick={() => deleteCardHandler(card.id)}
-                      >
-                        Delete
-                      </button>
-                    </a>
+                    <button
+                      className="col-1 btn btn-danger float-right"
+                      onClick={() => deleteCardHandler(card.id)}
+                    >
+                      Delete
+                    </button>
                   </div>
-                </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
       </div>
     );
